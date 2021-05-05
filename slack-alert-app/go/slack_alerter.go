@@ -27,17 +27,23 @@ type SlackAlerter struct {
 }
 
 // NewSlackAlerter returns a new slack alerter using the given slackToken.
-func NewSlackAlerter(slackToken string) *SlackAlerter {
+func NewSlackAlerter(slackToken, slackChannel string) *SlackAlerter {
 	slackClient := slack.New(slackToken)
 	return &SlackAlerter{
 		slackClient: slackClient,
-		channel:     "#pixie-alerts",
+		channel:     slackChannel,
 	}
 }
 
 // SendError sends the message as an error.
 func (s *SlackAlerter) SendError(msg string) error {
-	_, _, err = slackClient.PostMessage(slackChannel, slack.MsgOptionText(table, false), slack.MsgOptionAsUser(true))
+	// For now just send both as the same.
+	return s.SendInfo(msg)
+}
+
+// SendInfo sends the message as info.
+func (s *SlackAlerter) SendInfo(msg string) error {
+	_, _, err := s.slackClient.PostMessage(s.channel, slack.MsgOptionText(msg, false), slack.MsgOptionAsUser(true))
 	if err != nil {
 		return err
 	}

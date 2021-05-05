@@ -25,10 +25,18 @@ import (
 	"strings"
 	"time"
 
-	"github.com/slack-go/slack"
 	"px.dev/pxapi"
 	"px.dev/pxapi/types"
 )
+
+// Alerter is the interface to some sort of alerting platform.
+type Alerter interface {
+	// SendError alerts with an error. Returns an error if the alerter itself experiences one.
+	SendError(msg string) error
+
+	// SendInfo alerts with an info. Returns an error if the alerter itself experiences one.
+	SendInfo(msg string) error
+}
 
 func main() {
 
@@ -74,7 +82,7 @@ func main() {
 		panic(err)
 	}
 
-	slackClient := slack.New(slackToken)
+	alerter := NewSlackAlerter(slackToken, slackChannel)
 
 	ticker := time.NewTicker(5 * time.Minute)
 	defer ticker.Stop()
@@ -95,7 +103,7 @@ func main() {
 		// Get slack message constructed from table data.
 		table := tm.GetTable("http_table").GetTableDataSync()
 		log.Println("Sending slack message.")
-		_, _, err = slackClient.PostMessage(slackChannel, slack.MsgOptionText(table, false), slack.MsgOptionAsUser(true))
+		err = alerter.SendInfo(table)
 		if err != nil {
 			log.Println("Error sending to slack: " + err.Error())
 		}
