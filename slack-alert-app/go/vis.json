@@ -1,0 +1,90 @@
+{
+  "variables": [
+    {
+      "name": "start_time",
+      "type": "PX_STRING",
+      "description": "The relative start time of the window. Current time is assumed to be now",
+      "defaultValue": "-5m"
+    },
+    {
+      "name": "namespace",
+      "type": "PX_NAMESPACE",
+      "description": "The name of the namespace to get stats for."
+    }
+  ],
+  "globalFuncs": [
+    {
+      "outputName": "inbound_service_let",
+      "func": {
+        "name": "inbound_service_let",
+        "args": [
+          {
+            "name": "start_time",
+            "variable": "start_time"
+          },
+          {
+            "name": "namespace",
+            "variable": "namespace"
+          }
+        ]
+      }
+    },
+    {
+      "outputName": "inbound_service_let_table",
+      "func": {
+        "name": "inbound_service_let_table",
+        "args": [
+          {
+            "name": "start_time",
+            "variable": "start_time"
+          },
+          {
+            "name": "namespace",
+            "variable": "namespace"
+          }
+        ]
+      }
+    }
+  ],
+  "widgets": [
+    {
+      "name": "HTTP Request Error Rate",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "w": 12,
+        "h": 3
+      },
+      "globalFuncOutputName": "inbound_service_let",
+      "displaySpec": {
+        "@type": "types.px.dev/px.vispb.TimeseriesChart",
+        "timeseries": [
+          {
+            "value": "error_rate",
+            "mode": "MODE_LINE",
+            "series": "service",
+            "stackBySeries": false
+          }
+        ],
+        "title": "",
+        "yAxis": {
+          "label": "error rate (%)"
+        },
+        "xAxis": null
+      }
+    },
+    {
+      "name": "HTTP Request Error Rate Table",
+      "position": {
+        "x": 0,
+        "y": 3,
+        "w": 12,
+        "h": 3
+      },
+      "globalFuncOutputName": "inbound_service_let_table",
+      "displaySpec": {
+        "@type": "types.px.dev/px.vispb.Table"
+      }
+    }
+  ]
+}
