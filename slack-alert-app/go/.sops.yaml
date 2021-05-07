@@ -1,0 +1,3 @@
+creation_rules:
+  - path_regex: .*/
+    gcp_kms: projects/pl-dev-infra/locations/global/keyRings/sops-dev/cryptoKeys/sops-key

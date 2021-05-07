@@ -1,0 +1,21 @@
+{
+	"PIXIE_API_KEY": "ENC[AES256_GCM,data:y/C/ZcCVuOygdJd8teb4P7EeeM5XCmLg9TJw3c3RNe2lkIYh,iv:jwCBtw6LiH1fsXAL/S2U4/vxD3H2NI2QgFA3ddkkVj4=,tag:/9AMic9trwNDv9CnG1B5ew==,type:str]",
+	"PIXIE_CLUSTER_ID": "ENC[AES256_GCM,data:08FdDjfK67azsjfwGNwBLLktp4oe5TohK4njxY1E0K7dCOYn,iv:73gBSNfJrniFfzGhBS0aPnHyPJjZ2TkEj08H9ICcewk=,tag:SQ11uwyrLadkEn+dMUWurA==,type:str]",
+	"SLACK_BOT_TOKEN": "ENC[AES256_GCM,data:2MsdTAhnu1XgAxvbBb2yU5murTYQ2VBNQOPaqQimxOz5EW0upmI8liFRvczm5SEtCmETmg2vS+4=,iv:ze+cOVdCfmwmOdyw95CYc+V03lgoWgCU33Dih+zPnso=,tag:4E1ZkIT708mF5Sid4x9s+w==,type:str]",
+	"sops": {
+		"kms": null,
+		"gcp_kms": [
+			{
+				"resource_id": "projects/pl-dev-infra/locations/global/keyRings/sops-dev/cryptoKeys/sops-key",
+				"created_at": "2021-05-07T01:13:50Z",
+				"enc": "CiQA5BLLge9yf/6gsDeqcQhMbB40gSstNyU33qZ0vO+o0WMItV4SSQAFe311q9+HGt3Wcsv4ebNPkXN6RaIBX6q5Hrh6cqN1go7MACWdsNBxet8S74mzWrBklcbXNJolafTfQNUI6bu3/ulYP8TDo24="
+			}
+		],
+		"azure_kv": null,
+		"lastmodified": "2021-05-07T01:13:51Z",
+		"mac": "ENC[AES256_GCM,data:TPjCkhMjnvm0HQrGxovT2hgKHVOFtIXL//TfllKzbk7+m+Y7kA216bnyiNjmLHBuNbdIE9xFW+Rg3ZB3wuW4GiecOaEx3Ro+jCyZijl+qHQhkU8ALFGeg/4p28WrM2TmazeBjFYoNpjmy40iExZHxfS4ztsCTy+UaSKQ0QPXJXY=,iv:zvRTInbsoLPpoOP80XlelHaoV0c6wbAxSDHwwV5g/Iw=,tag:9JCXRBZsUSrq0TkbjO9tLQ==,type:str]",
+		"pgp": null,
+		"unencrypted_suffix": "_unencrypted",
+		"version": "3.3.1"
+	}
+}
