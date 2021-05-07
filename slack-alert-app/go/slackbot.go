@@ -90,8 +90,13 @@ func main() {
 	}
 
 	var alerter Alerter
-	// alerter = NewSlackAlerter(cfg.SlackToken, cfg.SlackChannel)
-	alerter = &LogAlerter{}
+	alerter = NewSlackAlerter(cfg.SlackToken, cfg.SlackChannel)
+	if true {
+		alerter.SendInfo("hi")
+		return
+	}
+	// enable for testing.
+	// alerter = &LogAlerter{}
 
 	st, err := NewServiceTracker(alerter, vz)
 	if err != nil {
